@@ -9,12 +9,13 @@ Repo for learning and experimenting with Docker.
 Current Projects in this repo
 
 1. Simple NodeJs App - Understanding how to create the basic Dockerfile.
+2. Simple Python App - understanding Docker interactive mode
 
 ## :anger: Requirement
 
 - Docker
 - NodeJs
-- Typescript
+- Python
 - JavaScript
 - Tailwindcss
 - CSS
