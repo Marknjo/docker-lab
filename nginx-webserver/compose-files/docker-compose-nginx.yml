@@ -1,6 +1,6 @@
 services:
   nginx:
-    build: 
+    build:
       context: ./nginx/
     ports:
       - 3000:80
