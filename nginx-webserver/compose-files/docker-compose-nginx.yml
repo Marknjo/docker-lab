@@ -1,9 +1,0 @@
-services:
-  nginx:
-    build:
-      context: ./nginx/
-    ports:
-      - 3000:80
-    volumes:
-      - ./nginx/app/:/usr/share/nginx/html/app/
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
