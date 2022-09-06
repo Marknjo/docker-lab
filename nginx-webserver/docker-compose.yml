@@ -7,6 +7,7 @@ services:
     volumes:
       - ./nginx/app/:/usr/share/nginx/html/app/
       - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./nginx/lib/:/lib/systemd/system/
   # dns:
   #   build: 
   #     context: ./dns/
