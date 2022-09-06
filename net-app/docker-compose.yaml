@@ -1,0 +1,32 @@
+version: '3.9'
+
+networks:
+  feedback-net:
+    external: true
+
+services:
+
+  feedback:
+    build: 
+      context: .
+    container_name: feedback-app
+    networks: 
+      - feedback-net
+    ports: 
+      - "3000:80"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: secret
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    networks:
+      - feedback-net
+    restart: always
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: secret
