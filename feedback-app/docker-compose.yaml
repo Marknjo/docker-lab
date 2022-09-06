@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  feedback:
+    build: 
+      context: .
+    ports:
+      - "3000:80"
+    volumes:
+      - ./:/app
+      - /app/temp
+      - /app/node_modules
+      - feedback:/app/feedback
+
+
+volumes:
+  feedback:

@@ -2,14 +2,16 @@ FROM node
 
 WORKDIR /app
 
+ARG DEFAULT_PORT=80
+
+ENV PORT=${DEFAULT_PORT}
+
 COPY ./package.json /app/
 
 RUN npm install 
 
-VOLUME [ "/app/feedback" ]
-
 COPY . .
 
-EXPOSE 80
+EXPOSE ${PORT}
 
-CMD ["node", "server.js"]
+CMD ["npm", "start"]
