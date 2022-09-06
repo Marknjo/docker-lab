@@ -1,5 +1,4 @@
 const fs = require("fs").promises;
-const exists = require("fs").exists;
 const path = require("path");
 const { urlencoded } = require("express");
 
@@ -33,12 +32,25 @@ app.post("/create", async (req, res) => {
   const finalFilePath = path.join(__dirname, "feedback", adjTitle + ".txt");
 
   await fs.writeFile(tempFilePath, content);
-  exists(finalFilePath, async (exists) => {
-    if (exists) {
-      res.redirect("/exists");
-    } else {
+  open(finalFilePath, "wx", async (err, fd) => {
+    if (err) {
+      if (err.code === "EEXIST") {
+        console.error(`${finalFilePath} already exists`);
+        res.redirect("/exists");
+        return;
+      }
+
+      console.log(err);
+      res.redirect("/");
+    }
+
+    try {
       await fs.rename(tempFilePath, finalFilePath);
       res.redirect("/");
+    } finally {
+      close(fd, (err) => {
+        if (err) throw err;
+      });
     }
   });
 });
