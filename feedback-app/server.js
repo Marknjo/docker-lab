@@ -45,7 +45,9 @@ app.post("/create", async (req, res) => {
     }
 
     try {
-      await fs.rename(tempFilePath, finalFilePath);
+      // await fs.rename(tempFilePath, finalFilePath);
+      await fs.copyFile(tempFilePath, finalFilePath);
+      await fs.unlink(tempFilePath);
       res.redirect("/");
     } finally {
       close(fd, (err) => {

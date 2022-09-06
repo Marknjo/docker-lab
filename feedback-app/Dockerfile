@@ -6,6 +6,8 @@ COPY ./package.json /app/
 
 RUN npm install 
 
+VOLUME [ "/app/feedback" ]
+
 COPY . .
 
 EXPOSE 80
