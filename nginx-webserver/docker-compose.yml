@@ -16,5 +16,5 @@ services:
       - 53:53/udp
     volumes:
       - ./dns/named.conf:/etc/bind/named.conf
-      - ./dns/zone/:/etc/bind/zone/
+      - ./dns/zones/:/etc/bind/zones/
     command: named -c /etc/bind/named.conf -g -u named
