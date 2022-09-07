@@ -5,6 +5,39 @@ networks:
 
 services:
 
+## Database support for the goals app
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - goals-multi-cont-net
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mark
+      MONGO_INITDB_ROOT_PASSWORD: secretPass
+    volumes:
+      - goals-db:/data/db
+
+## Backend of the goals app
+  backend:
+    build: 
+      context: ./backend
+    container_name: goals-backend
+    ports:
+      - "80:80"
+    environment:
+      MONGODB_USER: mark
+      MONGODB_PASS: secretPass
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - goals-multi-cont-net
+    depends_on:
+      - mongodb
+
 ## frontend of the goals app
   fontend:
     build: 
@@ -17,30 +50,9 @@ services:
       - /app/node_modules
     networks:
       - goals-multi-cont-net
+    depends_on:
+      - backend
 
-## Backend of the goals app
-  backend:
-    build: 
-      context: ./backend
-    container_name: goals-backend
-    ports:
-      - "80:80"
-    volumes:
-      - ./backend:/app
-      - /app/node_modules
-    networks:
-      - goals-multi-cont-net
-
-
-## Database support for the goals app
-  mongodb:
-    image: mongo
-    container_name: mongodb
-    networks:
-      - goals-multi-cont-net
-    restart: always
-    volumes:
-      - goals-db:/data/db
-
+## Define goals app named volumes
 volumes:
   goals-db:

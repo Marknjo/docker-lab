@@ -108,7 +108,12 @@ async function startApp() {
     };
 
     const db_host = "mongodb";
-    const db_conn_str = `mongodb://${db_host}:27017/course-goals`;
+    const db_user = process.env.MONGODB_USER || "root";
+    const db_pass = process.env.MONGODB_PASS || "secret";
+
+    console.log({ db_host, db_pass, db_user });
+
+    const db_conn_str = `mongodb://${db_user}:${db_pass}@${db_host}:27017/course-goals?authSource=admin`;
 
     await mongoose.connect(db_conn_str, options);
     console.log(`Mongodb connection successful 😃😃😃`);
