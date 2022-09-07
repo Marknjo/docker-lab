@@ -57,3 +57,4 @@ services:
 ## Define goals app named volumes
 volumes:
   goals-db:
+  logs:

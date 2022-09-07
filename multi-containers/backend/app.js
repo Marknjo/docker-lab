@@ -102,7 +102,7 @@ async function startApp() {
     /// Start express app if everything is okay
     const port = process.env.PORT || 80;
     app.listen(port, () => {
-      console.log(`Server running on port ${port}`);
+      console.log(`Server running on port ${port} 😃😃😃`);
     });
   } catch (err) {
     console.log(`Mongodb connection failed 😢😢😢: ${err.message} \n`);
