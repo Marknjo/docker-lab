@@ -1,6 +1,6 @@
-networks:
-  goals-multi-cont-net:
-    external: true
+# networks:
+#   goals-multi-cont-net:
+#     external: true
 
 
 services:
@@ -11,8 +11,8 @@ services:
     container_name: mongodb
     ports:
       - "27017:27017"
-    networks:
-      - goals-multi-cont-net
+    # networks:
+    #   - goals-multi-cont-net
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: mark
@@ -34,8 +34,8 @@ services:
       - ./backend:/app
       - /app/node_modules
       - logs:/app/logs
-    networks:
-      - goals-multi-cont-net
+    # networks:
+    #   - goals-multi-cont-net
     depends_on:
       - mongodb
 
@@ -49,8 +49,10 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
-    networks:
-      - goals-multi-cont-net
+    # networks:
+    #   - goals-multi-cont-net
+    stdin_open: true
+    tty: true
     depends_on:
       - backend
 
