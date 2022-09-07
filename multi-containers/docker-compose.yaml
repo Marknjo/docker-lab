@@ -34,3 +34,11 @@ services:
     networks:
       - goals-multi-cont-net
 
+
+## Database support for the goals app
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    networks:
+      - goals-multi-cont-net
+    restart: always
