@@ -39,3 +39,8 @@ services:
     networks:
       - goals-multi-cont-net
     restart: always
+    volumes:
+      - goals-db:/data/db
+
+volumes:
+  goals-db:
