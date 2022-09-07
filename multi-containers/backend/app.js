@@ -114,7 +114,7 @@ async function startApp() {
     console.log(`Mongodb connection successful 😃😃😃`);
 
     /// Start express app if everything is okay
-    const port = process.env.PORT || 3000;
+    const port = process.env.PORT || 80;
     app.listen(port, () => {
       console.log(`Server running on port ${port}`);
     });

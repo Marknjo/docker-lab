@@ -1,7 +1,6 @@
 networks:
   goals-multi-cont-net:
-    external:
-      name: goals-multi-cont-net
+    external: true
 
 
 services:
@@ -16,7 +15,6 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
-      - /app/package-lock.json  
     networks:
       - goals-multi-cont-net
 
@@ -30,7 +28,6 @@ services:
     volumes:
       - ./backend:/app
       - /app/node_modules
-      - /app/package-lock.json
     networks:
       - goals-multi-cont-net
 

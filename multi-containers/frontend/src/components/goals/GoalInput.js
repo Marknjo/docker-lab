@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import './GoalInput.css';
-import Card from '../UI/Card';
+import "./GoalInput.css";
+import Card from "../UI/Card";
 
 function GoalInput(props) {
-  const [enteredGoalText, setEnteredGoalText] = useState('');
+  const [enteredGoalText, setEnteredGoalText] = useState("");
 
   function updateGoalTextHandler(event) {
     setEnteredGoalText(event.target.value);
@@ -14,20 +14,20 @@ function GoalInput(props) {
     event.preventDefault();
 
     if (enteredGoalText.trim().length === 0) {
-      alert('Invalid text - please enter a longer one!');
+      alert("Invalid text - please enter a longer one!");
       return;
     }
 
     props.onAddGoal(enteredGoalText);
 
-    setEnteredGoalText('');
+    setEnteredGoalText("");
   }
 
   return (
     <section id='goal-input'>
       <Card>
         <form onSubmit={goalSubmitHandler}>
-          <label htmlFor='text'>New Goal</label>
+          <label htmlFor='text'>Add A New Goal</label>
           <input
             type='text'
             id='text'
