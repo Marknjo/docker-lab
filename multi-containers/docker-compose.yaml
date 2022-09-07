@@ -1,5 +1,6 @@
 services:
 
+## frontend of the goals app
   fontend:
     build: 
       context: ./frontend
@@ -9,6 +10,17 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
+      - /app/package-lock.json  
+
+## Backend of the goals app
+  backend:
+    build: 
+      context: ./backend
+    container_name: goals-backend
+    ports:
+      - "80:80"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
       - /app/package-lock.json
 
-    
