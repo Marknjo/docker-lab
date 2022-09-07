@@ -3,6 +3,4 @@ version: "3.9"
 services:
   traefik:
     volumes:
-      - type: npipe
-        source: \\.\pipe\docker_engine
-        target: \\.\pipe\docker_engine
+      - /var/run/docker.sock:/var/run/docker.sock:ro
