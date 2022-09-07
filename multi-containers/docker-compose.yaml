@@ -1,0 +1,14 @@
+services:
+
+  fontend:
+    build: 
+      context: ./frontend
+    container_name: goals-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/package-lock.json
+
+    
