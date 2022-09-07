@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  certs:
+    image: diamol/cert-generator
+    container_name: "certs-generator"
+    environment:
+      - HOST_NAME=image-gallery.local
+    volumes:
+      - ../certs:/certs
+
+  
