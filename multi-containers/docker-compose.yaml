@@ -33,6 +33,7 @@ services:
     volumes:
       - ./backend:/app
       - /app/node_modules
+      - logs:/app/logs
     networks:
       - goals-multi-cont-net
     depends_on:
