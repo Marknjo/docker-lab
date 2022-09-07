@@ -82,19 +82,47 @@ app.delete("/goals/:id", async (req, res) => {
   }
 });
 
-mongoose.connect(
-  "mongodb://localhost:27017/course-goals",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-  (err) => {
-    if (err) {
-      console.error("FAILED TO CONNECT TO MONGODB");
-      console.error(err);
-    } else {
-      console.log("CONNECTED TO MONGODB");
-      app.listen(80);
-    }
+// mongoose.connect(
+//   "mongodb://localhost:27017/course-goals",
+//   {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   },
+//   (err) => {
+//     if (err) {
+//       console.error("FAILED TO CONNECT TO MONGODB");
+//       console.error(err);
+//     } else {
+//       console.log("CONNECTED TO MONGODB");
+//       app.listen(80);
+//     }
+//   }
+// );
+
+async function startApp() {
+  try {
+    const options = {
+      maxPoolSize: 10,
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+    };
+
+    const db_host = "mongodb";
+    const db_conn_str = `mongodb://${db_host}:27017/course-goals`;
+
+    await mongoose.connect(db_conn_str, options);
+    console.log(`Mongodb connection successful 😃😃😃`);
+
+    /// Start express app if everything is okay
+    const port = process.env.PORT || 3000;
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  } catch (err) {
+    console.log(`Mongodb connection failed 😢😢😢: ${err.message} \n`);
+    console.log(err);
+    process.exit(1);
   }
-);
+}
+
+startApp();
