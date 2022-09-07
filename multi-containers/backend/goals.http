@@ -1,0 +1,15 @@
+## GOALS APP REST Client FILE
+
+# Get All Goals
+GET http://localhost:3000/goals HTTP/1.1
+
+## Delete a goal by id
+DELETE http://localhost:3000/id HTTP/1.1
+
+## Create a new goal
+POST http://localhost:3000/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "text": "Dummy Text"
+}
